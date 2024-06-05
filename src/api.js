@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 // Base URL for API requests, using environment variable if available
-const BASE_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
+const BASE_URL = 'https://polar-crag-05562-35e9463c10cb.herokuapp.com/';
+// const BASE_URL = process.env.REACT_APP_BASE_URL || 'http://localhost:5000';
 
 // Class for handling API requests related to TripCheck
 class TripCheckApi {
