@@ -3,6 +3,8 @@ import axios from 'axios';
 // Base URL for API requests, using environment variable if available
 
 const BASE_URL = process.env.REACT_APP_BASE_URL || 'http://localhost:5000';
+const API_URL = process.env.REACT_APP_BASE_URL;
+console.log('BASE_URL', API_URL);
 
 // Class for handling API requests related to TripCheck
 class TripCheckApi {
