@@ -33,7 +33,7 @@ const HelpfulTips = ({ destination, fromDate, toDate }) => {
                     .map((part) => part.trim());
 
                 
-                console.log('resolvedParts:', resolvedParts);
+                console.log('resolvedParts after:', resolvedParts);
 
                 // Check if resolved address contains only one part (likely a country)
                 if (resolvedParts.length > 1) {
@@ -47,12 +47,15 @@ const HelpfulTips = ({ destination, fromDate, toDate }) => {
 
                 // Always fetch currency data regardless of weather data
                 // Extract country name from weather data
-                const { resolvedAddress } = weatherResponse.data.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                const { resolvedAddress } = weatherResponse.data;
                 const addressParts = resolvedAddress.split(',');
                 const countryName = addressParts[addressParts.length - 1].trim();
-                const formattedCountry = countryName.replace(/\s/g, '-');
+                const formattedCountry = countryName .normalize("NFD")
+                    .replace(/[\u0300-\u036f]/g, "")
+                    .replace(/\s/g, '-')
+                    .toLowerCase();
 
-                console.log('Resolved Address:', resolvedAddress);
+                console.log('formattedCountry:', formattedCountry);
                 console.log('Destination:', destination);
                 
                 // Fetch currency code using country name
