@@ -52,6 +52,7 @@ const HelpfulTips = ({ destination, fromDate, toDate }) => {
                 const countryName = addressParts[addressParts.length - 1].trim();
                 const formattedCountry = countryName .normalize("NFD")
                     .replace(/[\u0300-\u036f]/g, "")
+                    .replace(/\s+/g, "")   
                     .toLowerCase();
 
                 console.log('formattedCountry:', formattedCountry);
