@@ -21,9 +21,6 @@ const HelpfulTips = ({ destination, fromDate, toDate }) => {
                 const weatherUrl = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${destination}/${fromDate}/${toDate}?key=${WEATHER_API_KEY}`;
                 const weatherResponse = await axios.get(weatherUrl);
 
-                console.log('Resolved Address:', weatherResponse.data.resolvedAddress);
-                console.log('Destination:', destination);
-
                 // Split resolved address by commas
                 const resolvedParts = weatherResponse.data.resolvedAddress
                     .normalize("NFD") // Normalize the string to separate diacritics from letters
@@ -31,9 +28,6 @@ const HelpfulTips = ({ destination, fromDate, toDate }) => {
                     .toLowerCase()
                     .split(',')
                     .map((part) => part.trim());
-
-                
-                console.log('resolvedParts after:', resolvedParts);
 
                 // Check if resolved address contains only one part (likely a country)
                 if (resolvedParts.length > 1) {
@@ -54,9 +48,6 @@ const HelpfulTips = ({ destination, fromDate, toDate }) => {
                     .replace(/[\u0300-\u036f]/g, "")
                     .replace(/\s+/g, "")   
                     .toLowerCase();
-
-                console.log('formattedCountry:', formattedCountry);
-                console.log('Destination:', destination);
                 
                 // Fetch currency code using country name
                 const currencyCode = await getCurrencyCode(formattedCountry);
