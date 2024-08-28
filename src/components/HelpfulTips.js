@@ -47,7 +47,7 @@ const HelpfulTips = ({ destination, fromDate, toDate }) => {
 
                 // Always fetch currency data regardless of weather data
                 // Extract country name from weather data
-                const { resolvedAddress } = weatherResponse.data;
+                const { resolvedAddress } = weatherResponse.data.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
                 const addressParts = resolvedAddress.split(',');
                 const countryName = addressParts[addressParts.length - 1].trim();
                 const formattedCountry = countryName.replace(/\s/g, '-');
